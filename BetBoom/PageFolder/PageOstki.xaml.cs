@@ -23,6 +23,7 @@ namespace BetBoom.PageFolder
         public PageOstki()
         {
             InitializeComponent();
+
         }
     }
 }

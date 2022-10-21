@@ -6,9 +6,47 @@
       xmlns:local="clr-namespace:BetBoom.PageFolder"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PageOstki" Background="Black">
+      Title="PageOstki">
 
     <Grid>
-        
+        <Border
+            CornerRadius="20"
+         
+            Background = "Black">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="ListBtn" Content="Отчеты" Width="190"  Style="{StaticResource BtnActive}"/>
+                    <Button x:Name="AddBtn" Content="Привоз" Width="190" Style="{StaticResource BtnMenuAdmin}"
+                    />
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label Content="Поиск" Width="100" Style="{StaticResource LblNormal}" />
+                    <TextBox x:Name="LoginTb" Width="300" />
+                </StackPanel>
+                <DataGrid x:Name="OstatkDG" AutoGenerateColumns="False"
+                  IsReadOnly="True" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="№" Width="50" Binding="{Binding IdProdukt}"/>
+                        <DataGridTextColumn Header="Наиминование" Width="*" Binding="{Binding NameProdukt}"/>
+                        <DataGridTextColumn Header="Привоз" Width="*"/>
+                        <DataGridTextColumn Header="Остаток" Width="*" Binding="{Binding Remains}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
     </Grid>
 </Page>
