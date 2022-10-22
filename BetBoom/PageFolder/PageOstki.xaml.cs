@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BetBoom.DataFolder;
 
 namespace BetBoom.PageFolder
 {
@@ -23,7 +24,8 @@ namespace BetBoom.PageFolder
         public PageOstki()
         {
             InitializeComponent();
-           
+            OstatkDG.ItemsSource = DBEntities.GetContext().Produkts.ToList().
+                 OrderBy(c => c.IdProdukt);
 
         }
 
@@ -31,5 +33,6 @@ namespace BetBoom.PageFolder
         {
             NavigationService.Navigate(new PagePrivoz());
         }
+
     }
 }
