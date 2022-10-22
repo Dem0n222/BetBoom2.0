@@ -117,6 +117,9 @@
     <Compile Include="PageFolder\PageOstki.xaml.cs">
       <DependentUpon>PageOstki.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\PagePrivoz.xaml.cs">
+      <DependentUpon>PagePrivoz.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowsFolder\ManeFramiWindow.xaml.cs">
       <DependentUpon>ManeFramiWindow.xaml</DependentUpon>
     </Compile>
@@ -161,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PageFolder\PageOstki.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\PagePrivoz.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

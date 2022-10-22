@@ -22,6 +22,7 @@ namespace BetBoom.PageFolder
     /// </summary>
     public partial class PageAvto : Page
     {
+       
         public PageAvto()
         {
             InitializeComponent();

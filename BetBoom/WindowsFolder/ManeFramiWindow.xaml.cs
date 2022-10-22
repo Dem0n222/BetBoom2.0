@@ -24,6 +24,7 @@ namespace BetBoom.WindowsFolder
         {
             InitializeComponent();
             MainFrame.Navigate(new PageFolder.PageAvto());
+
         }
 
         private void RollUpIm_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

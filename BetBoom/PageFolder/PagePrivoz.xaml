@@ -1,4 +1,4 @@
-﻿<Page x:Class="BetBoom.PageFolder.PageOstki"
+﻿<Page x:Class="BetBoom.PageFolder.PagePrivoz"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,12 +6,11 @@
       xmlns:local="clr-namespace:BetBoom.PageFolder"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="500"
-      Title="PageOstki">
+      Title="PagePrivoz">
 
     <Grid>
         <Border
             CornerRadius="20"
-         
             Background = "Black">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -28,23 +27,24 @@
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" >
-                    <Button x:Name="ListBtn" Content="Отчеты" Width="150"  Style="{StaticResource BtnActive}"/>
-                    <Button x:Name="AddBtn" Content="Привоз" Width="150" Style="{StaticResource BtnMenuAdmin}"
-                   Click="AddBtn_Click" />
+                <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="ListBtn" Content="Отчеты" Width="150"  Style="{StaticResource BtnMenuAdmin}" Click="ListBtn_Click"/>
+                    <Button x:Name="AddBtn" Content="Привоз" Width="150" Style="{StaticResource  BtnActive}"/>
                 </StackPanel>
+                <Button x:Name="DbBtn" Content="Добавить" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Style="{DynamicResource BtnMenuAdmin}"/>
                 <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
                     <Label Content="Поиск" Width="100" Style="{StaticResource LblNormal}" />
-                    <TextBox x:Name="LoginTb" Width="300" />
+                    <TextBox x:Name="LoginTb" Width="300"/>
                 </StackPanel>
                 <DataGrid x:Name="OstatkDG" AutoGenerateColumns="False"
                   IsReadOnly="True" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="№" Width="50" Binding="{Binding IdProdukt}"/>
-                        <DataGridTextColumn Header="Наиминование" Width="*" Binding="{Binding NameProdukt}"/>
-                        <DataGridTextColumn Header="Привоз" Width="*"/>
-                        <DataGridTextColumn Header="Остаток" Width="*" Binding="{Binding Remains}"/>
+                        <DataGridTextColumn Header="№" Width="50"/>
+                        <DataGridTextColumn Header="Наиминование" Width="*"/>
+                        <DataGridTextColumn Header="Остаток" Width="*"/>
+
                     </DataGrid.Columns>
+
                 </DataGrid>
             </Grid>
         </Border>

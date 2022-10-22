@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:BetBoom.PageFolder"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="500"
-      Title="PageAvto">
+      Title="PageAvto" >
 
     <Grid>
         <Border
@@ -39,6 +39,7 @@
 
             <Button x:Name="InBtn" Content="Войти" Grid.Column="1" Grid.Row="5" Style="{StaticResource BtnActive}"
                 Grid.ColumnSpan="2" Click="InBtn_Click"/>
+                
             </Grid>
         </Border>
     </Grid>

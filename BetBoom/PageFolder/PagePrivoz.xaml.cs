@@ -16,20 +16,18 @@ using System.Windows.Shapes;
 namespace BetBoom.PageFolder
 {
     /// <summary>
-    /// Логика взаимодействия для PageOstki.xaml
+    /// Логика взаимодействия для PagePrivoz.xaml
     /// </summary>
-    public partial class PageOstki : Page
+    public partial class PagePrivoz : Page
     {
-        public PageOstki()
+        public PagePrivoz()
         {
             InitializeComponent();
-           
-
         }
 
-        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        private void ListBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new PagePrivoz());
+            NavigationService.Navigate(new PageOstki());
         }
     }
 }
