@@ -29,7 +29,7 @@
                     <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" >
-                    <Button x:Name="ListBtn" Content="Отчеты" Width="150"  Style="{StaticResource BtnActive}"/>
+                    <Button x:Name="ListBtn" Content="Отчеты" Width="150"  Style="{StaticResource BtnActive }"/>
                     <Button x:Name="AddBtn" Content="Привоз" Width="150" Style="{StaticResource BtnMenuAdmin}"
                    Click="AddBtn_Click" />
                 </StackPanel>

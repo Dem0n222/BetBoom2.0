@@ -111,6 +111,9 @@
     <Compile Include="DataFolder\User.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\PageAdd.xaml.cs">
+      <DependentUpon>PageAdd.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\PageAvto.xaml.cs">
       <DependentUpon>PageAvto.xaml</DependentUpon>
     </Compile>
@@ -159,6 +162,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="PageFolder\PageAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolder\PageAvto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

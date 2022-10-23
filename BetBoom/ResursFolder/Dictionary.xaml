@@ -119,6 +119,21 @@
             </Setter.Value>
         </Setter>
         <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="DarkGoldenrod"/>
+            </Trigger>
+        </Style.Triggers>
+
     </Style>
     <!--////////////////////////////////////////////Списки////////////////////////////////////////////-->
     <Style TargetType="DataGrid">
