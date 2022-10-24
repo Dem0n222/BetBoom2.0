@@ -147,5 +147,60 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="10"/>
     </Style>
+    <!--Кнопка-->
+    
+        <Style TargetType= "Button" x:Key="BtnAPP">
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="White"/>
+
+        <Setter Property="Template">
+           
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                        <Border x:Name="BorderStyle" CornerRadius="10"
+                            BorderBrush="DarkRed" BorderThickness="2">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          TextElement.FontFamily="Roboto"/>
+                        </Border>
+                    </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+     
+
+
+        <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Yellow"/>
+                <Setter Property="Foreground" Value="Yellow"/>
+                <Setter Property="FontFamily" Value="Roboto"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="Margin" Value="10"/>
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="BorderStyle" CornerRadius="10"
+                            BorderBrush="Yellow" BorderThickness="2"
+                            Background="{x:Null}">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          TextElement.FontFamily="Roboto"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            </Style.Triggers>
+            
+        </Style>
+    
     
 </ResourceDictionary>

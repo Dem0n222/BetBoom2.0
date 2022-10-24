@@ -19,6 +19,7 @@ namespace BetBoom.DataFolder
         {
             this.invoice = new HashSet<invoice>();
             this.Produkts = new HashSet<Produkts>();
+            this.Order = new HashSet<Order>();
         }
     
         public int IdProvider { get; set; }
@@ -28,5 +29,7 @@ namespace BetBoom.DataFolder
         public virtual ICollection<invoice> invoice { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Produkts> Produkts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Order { get; set; }
     }
 }

@@ -37,8 +37,8 @@
             <Label Content="Пароль:" Grid.Row="4" Grid.Column="1" Style="{StaticResource LblNormal}"/>
             <PasswordBox x:Name="PasswordTB" Grid.Row="4" Grid.Column="2" />
 
-            <Button x:Name="InBtn" Content="Войти" Grid.Column="1" Grid.Row="5" Style="{StaticResource BtnActive}"
-                Grid.ColumnSpan="2" Click="InBtn_Click"/>
+            <Button x:Name="InBtn" Content="Войти" Grid.Column="1" Grid.Row="5" Style="{StaticResource BtnAPP}"
+                Grid.ColumnSpan="2" Click="InBtn_Click" />
                 
             </Grid>
         </Border>

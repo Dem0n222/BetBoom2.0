@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BetBoom.ClassFolder;
+using BetBoom.DataFolder;
 
 namespace BetBoom.PageFolder
 {
@@ -23,16 +25,32 @@ namespace BetBoom.PageFolder
         public PagePrivoz()
         {
             InitializeComponent();
+            OstatkDG.ItemsSource = DBEntities.GetContext().Produkts.ToList().
+                 OrderBy(c => c.IdProdukt);
         }
 
         private void ListBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new PageOstki());
+
         }
 
         private void DbBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new PageAdd());
+        }
+
+        private void LoginTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                OstatkDG.ItemsSource = DBEntities.GetContext().Produkts.Where
+                (u => u.NameProdukt.StartsWith(LoginTb.Text)).ToList();
+            }
+            catch (Exception ex)
+            {
+                ClassMB.MBError(ex);
+            }
         }
     }
 }

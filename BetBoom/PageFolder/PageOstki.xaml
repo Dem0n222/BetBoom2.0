@@ -29,23 +29,27 @@
                     <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" >
-                    <Button x:Name="ListBtn" Content="Отчеты" Width="150"  Style="{StaticResource BtnActive }"/>
-                    <Button x:Name="AddBtn" Content="Привоз" Width="150" Style="{StaticResource BtnMenuAdmin}"
+                    <Button x:Name="ListBtn" Content="Отчеты" Width="150"  Style="{StaticResource BtnAPP }"/>
+                    <Button x:Name="AddBtn" Content="Привоз" Width="150" Style="{StaticResource BtnAPP}"
                    Click="AddBtn_Click" />
                 </StackPanel>
                 <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
                     <Label Content="Поиск" Width="100" Style="{StaticResource LblNormal}" />
-                    <TextBox x:Name="LoginTb" Width="300" />
+                    <TextBox x:Name="LoginTb" Width="300" TextChanged="LoginTb_TextChanged"/>
                 </StackPanel>
                 <DataGrid x:Name="OstatkDG" AutoGenerateColumns="False"
                   IsReadOnly="True" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="№" Width="50" Binding="{Binding IdProdukt}"/>
                         <DataGridTextColumn Header="Наиминование" Width="*" Binding="{Binding NameProdukt}"/>
-                        <DataGridTextColumn Header="Привоз" Width="*"/>
+                        <DataGridTextColumn Header="Дата" Width="*" Binding="{Binding DataOrder}"/>
+                        <DataGridTextColumn Header="Поставка" Width="*"/>
                         <DataGridTextColumn Header="Остаток" Width="*" Binding="{Binding Remains}"/>
                     </DataGrid.Columns>
                 </DataGrid>
+                <TextBox x:Name="OstatkiTb" Grid.Column="2" Grid.Row="4"/>
+                <Button x:Name="BtnSave" Content="Сохронить" Grid.Column="1"
+                        Grid.Row="4" Style="{StaticResource BtnAPP}" Click="BtnSave_Click"/>
             </Grid>
         </Border>
     </Grid>

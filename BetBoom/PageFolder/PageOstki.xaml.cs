@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BetBoom.DataFolder;
+using BetBoom.ClassFolder;
 
 namespace BetBoom.PageFolder
 {
@@ -34,5 +35,28 @@ namespace BetBoom.PageFolder
             NavigationService.Navigate(new PagePrivoz());
         }
 
+        private void LoginTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                OstatkDG.ItemsSource = DBEntities.GetContext().Produkts.Where
+                (u => u.NameProdukt.StartsWith(LoginTb.Text)).ToList();
+            }
+            catch (Exception ex)
+            {
+                ClassMB.MBError(ex);
+            }
+
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            Produkts product = OstatkDG.SelectedItem as Produkts;
+            product.Remains = Convert.ToInt16(OstatkiTb.Text);
+            DBEntities.GetContext().SaveChanges();
+            OstatkDG.ItemsSource = DBEntities.GetContext().Produkts.ToList().
+                 OrderBy(c => c.IdProdukt);
+
+        }
     }
 }

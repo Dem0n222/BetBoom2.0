@@ -5,35 +5,61 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BetBoom.PageFolder"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="1000"
       Title="PageAdd">
 
     <Grid>
         <Border
             CornerRadius="20"
-            Background = "Black">
+            Background = "Black"
+             Width="450"
+            Height="500">
             <Grid>
-                <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" HorizontalContentAlignment="Left" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="50,0,0,0">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="Green"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="DarkGoldenrod"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="90"/>
+                    <RowDefinition/>
+        
+                    <RowDefinition/>
+                 
+                    
+                    <RowDefinition/>
+                    <RowDefinition Height="90"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="BackBtn" Content="Назад"
+                        HorizontalAlignment="Left" Style="{DynamicResource BtnAPP}" Click="BackBtn_Click"/>
+
+                <Label Content="Поставщик:" Grid.Row="1" 
+                       Style="{StaticResource  LblNormal}"/>
+                <Label Content="Товар:" Grid.Row="2" 
+                       Style="{StaticResource  LblNormal}"/>
+                <Label Content="Количество:" Grid.Row="3" 
+                       Style="{StaticResource  LblNormal}"/>
+              
+
+                <ComboBox x:Name="SuppliersCb" Grid.Column="1"
+                          Grid.Row="1"  
+                          SelectedItem="{Binding Provider}" 
+                          DisplayMemberPath="NameProvider"
+                          SelectedValuePath="IdProvider"/>
+                <ComboBox x:Name="ProductCb" Grid.Column="1"
+                          Grid.Row="2" 
+                          SelectedItem="{Binding Produkts}" 
+                          DisplayMemberPath="NameProdukt"
+                          SelectedValuePath="IdProdukt"/>
+                <TextBox x:Name="quantityTb" Grid.Column="1"
+                          Grid.Row="3"/>
+            
+              
+
+                <Button x:Name="SaveBtn" Content="Сохранить"
+                        HorizontalAlignment="Center" Click="SaveBtn_Click"
+                        Style="{DynamicResource BtnAPP}"
+                        Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" />
             </Grid>
         </Border>
        

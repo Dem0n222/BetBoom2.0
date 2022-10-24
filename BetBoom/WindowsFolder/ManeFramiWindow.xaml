@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BetBoom.WindowsFolder"
         mc:Ignorable="d"
-        Title="ManeFramiWindow" Height="650" Width="600" WindowStyle="None"
+        Title="ManeFramiWindow" Height="750" Width="600" WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResizeWithGrip"

@@ -19,7 +19,10 @@ namespace BetBoom.DataFolder
         public System.DateTime DataOrder { get; set; }
         public decimal Price { get; set; }
         public string PriceAll { get; set; }
+        public Nullable<int> IdProvider { get; set; }
+        public Nullable<int> QuantityOrder { get; set; }
     
         public virtual Produkts Produkts { get; set; }
+        public virtual Provider Provider { get; set; }
     }
 }

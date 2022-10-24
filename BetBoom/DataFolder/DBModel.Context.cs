@@ -15,18 +15,17 @@ namespace BetBoom.DataFolder
     
     public partial class DBEntities : DbContext
     {
-        private static DBEntities context;
+        private static DBEntities Context;
         public DBEntities()
             : base("name=DBEntities")
         {
         }
         public static DBEntities GetContext()
         {
-            if (context == null)
-                context = new DBEntities();
-            return context;
+            if (Context == null)
+                Context = new DBEntities();
+            return Context;
         }
-
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -35,6 +35,8 @@
           <Property Name="DataOrder" Type="date" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="7" Scale="2" Nullable="false" />
           <Property Name="PriceAll" Type="nchar" MaxLength="10" />
+          <Property Name="IdProvider" Type="int" />
+          <Property Name="QuantityOrder" Type="int" />
         </EntityType>
         <EntityType Name="Produkts">
           <Key>
@@ -133,6 +135,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Order_Provider">
+          <End Role="Provider" Type="Self.Provider" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provider">
+              <PropertyRef Name="IdProvider" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="IdProvider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Produkts_Provider">
           <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
           <End Role="Produkts" Type="Self.Produkts" Multiplicity="*" />
@@ -172,7 +186,9 @@
     [Order].[IdProdukt] AS [IdProdukt], 
     [Order].[DataOrder] AS [DataOrder], 
     [Order].[Price] AS [Price], 
-    [Order].[PriceAll] AS [PriceAll]
+    [Order].[PriceAll] AS [PriceAll], 
+    [Order].[IdProvider] AS [IdProvider], 
+    [Order].[QuantityOrder] AS [QuantityOrder]
     FROM [dbo].[Order] AS [Order]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_invoice_City" Association="Self.FK_invoice_City">
@@ -189,6 +205,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Order_Produkts" Association="Self.FK_Order_Produkts">
             <End Role="Produkts" EntitySet="Produkts" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Provider" Association="Self.FK_Order_Provider">
+            <End Role="Provider" EntitySet="Provider" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_Produkts_Provider" Association="Self.FK_Produkts_Provider">
@@ -244,6 +264,7 @@
           <Property Name="NameProvider" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="invoice" Relationship="Self.FK_invoice_Provider" FromRole="Provider" ToRole="invoice" />
           <NavigationProperty Name="Produkts" Relationship="Self.FK_Produkts_Provider" FromRole="Provider" ToRole="Produkts" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Provider" FromRole="Provider" ToRole="Order" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -293,7 +314,10 @@
           <Property Name="DataOrder" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Price" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
           <Property Name="PriceAll" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="IdProvider" Type="Int32" />
+          <Property Name="QuantityOrder" Type="Int32" />
           <NavigationProperty Name="Produkts" Relationship="Self.FK_Order_Produkts" FromRole="Order" ToRole="Produkts" />
+          <NavigationProperty Name="Provider" Relationship="Self.FK_Order_Provider" FromRole="Order" ToRole="Provider" />
         </EntityType>
         <Association Name="FK_invoice_City">
           <End Role="City" Type="Self.City" Multiplicity="1" />
@@ -355,6 +379,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Order_Provider">
+          <End Role="Provider" Type="Self.Provider" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provider">
+              <PropertyRef Name="IdProvider" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="IdProvider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -396,6 +432,10 @@
           <AssociationSet Name="FK_Produkts_Provider" Association="Self.FK_Produkts_Provider">
             <End Role="Provider" EntitySet="Provider" />
             <End Role="Produkts" EntitySet="Produkts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Provider" Association="Self.FK_Order_Provider">
+            <End Role="Provider" EntitySet="Provider" />
+            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
@@ -489,6 +529,8 @@
                 <ScalarProperty Name="DataOrder" ColumnName="DataOrder" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="PriceAll" ColumnName="PriceAll" />
+                <ScalarProperty Name="IdProvider" ColumnName="IdProvider" />
+                <ScalarProperty Name="QuantityOrder" ColumnName="QuantityOrder" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

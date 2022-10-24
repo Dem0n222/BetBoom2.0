@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BetBoom.DataFolder;
+using BetBoom.ClassFolder;
 
 namespace BetBoom.PageFolder
 {
@@ -23,6 +25,52 @@ namespace BetBoom.PageFolder
         public PageAdd()
         {
             InitializeComponent();
+            ProductCb.ItemsSource = DBEntities.GetContext()
+                .Produkts.ToList();
+            SuppliersCb.ItemsSource = DBEntities.GetContext()
+                .Provider.ToList();
+        }
+
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (ProductCb.SelectedItem == null)
+            {
+                ClassMB.MBError("Выберите тавар");
+                ProductCb.Focus();
+            }
+            if (SuppliersCb.SelectedItem == null)
+            {
+                ClassMB.MBError("Выберите поставщика");
+                SuppliersCb.Focus();
+            }
+            if (string.IsNullOrEmpty(quantityTb.Text))
+            {
+                ClassMB.MBError("Введите количество");
+                quantityTb.Focus();
+            }
+            else
+            {
+                AddOrder();
+                ClassMB.MBInformation("Заказ создан");
+                NavigationService.GoBack();
+
+            }
+        }
+        private void AddOrder()
+        {
+            DBEntities.GetContext().Order.Add(new Order()
+            {
+                IdProdukt = Int32.Parse(ProductCb.SelectedValue.ToString()),
+                DataOrder = DateTime.Now,
+                QuantityOrder = Int32.Parse(quantityTb.Text),
+                IdProvider = Int32.Parse(SuppliersCb.SelectedValue.ToString())
+            });
+            DBEntities.GetContext().SaveChanges();
         }
     }
 }
