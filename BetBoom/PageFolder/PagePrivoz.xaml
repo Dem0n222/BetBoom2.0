@@ -31,7 +31,7 @@
                     <Button x:Name="ListBtn" Content="Отчеты" Width="150"  Style="{StaticResource BtnAPP}" Click="ListBtn_Click"/>
                     <Button x:Name="AddBtn" Content="Привоз" Width="150" Style="{StaticResource  BtnAPP}"/>
                 </StackPanel>
-                <Button x:Name="DbBtn" Content="Добавить" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Style="{DynamicResource BtnAPP}" Click="DbBtn_Click"/>
+                <Button x:Name="DbBtn" Content="Сделать Заказ" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Style="{DynamicResource BtnAPP}" Click="DbBtn_Click"/>
                 <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
                     <Label Content="Поиск" Width="100" Style="{StaticResource LblNormal}" />
                     <TextBox x:Name="LoginTb" Width="300" TextChanged="LoginTb_TextChanged"/>

@@ -23,10 +23,10 @@ namespace BetBoom.DataFolder
         public static DBEntities GetContext()
         {
             if (Context == null)
-                Context = new DBEntities();
+               Context = new DBEntities();
             return Context;
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

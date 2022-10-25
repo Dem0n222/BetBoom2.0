@@ -17,8 +17,6 @@ namespace BetBoom.DataFolder
         public int IdOrder { get; set; }
         public int IdProdukt { get; set; }
         public System.DateTime DataOrder { get; set; }
-        public decimal Price { get; set; }
-        public string PriceAll { get; set; }
         public Nullable<int> IdProvider { get; set; }
         public Nullable<int> QuantityOrder { get; set; }
     

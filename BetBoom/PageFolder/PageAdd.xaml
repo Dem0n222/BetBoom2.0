@@ -53,13 +53,18 @@
                           SelectedValuePath="IdProdukt"/>
                 <TextBox x:Name="quantityTb" Grid.Column="1"
                           Grid.Row="3"/>
-            
-              
 
-                <Button x:Name="SaveBtn" Content="Сохранить"
+
+                <StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                    <Button x:Name="SaveBtn" Content="Сохранить"
                         HorizontalAlignment="Center" Click="SaveBtn_Click"
                         Style="{DynamicResource BtnAPP}"
-                        Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" />
+                        />
+                <Button x:Name="HistorBtn" Content="История заказов"
+                        HorizontalAlignment="Center"
+                        Style="{DynamicResource BtnAPP}"
+                        Click="HistorBtn_Click"/>
+                </StackPanel>
             </Grid>
         </Border>
        

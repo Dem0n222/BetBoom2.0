@@ -67,10 +67,17 @@ namespace BetBoom.PageFolder
             {
                 IdProdukt = Int32.Parse(ProductCb.SelectedValue.ToString()),
                 DataOrder = DateTime.Now,
-                QuantityOrder = Int32.Parse(quantityTb.Text),
-                IdProvider = Int32.Parse(SuppliersCb.SelectedValue.ToString())
+                IdProvider = Int32.Parse(SuppliersCb.SelectedValue.ToString()),
+                QuantityOrder = Convert.ToInt32(quantityTb.Text)
+               
+               
             });
             DBEntities.GetContext().SaveChanges();
+        }
+
+        private void HistorBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new PageInvoce());
         }
     }
 }

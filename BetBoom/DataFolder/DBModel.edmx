@@ -28,13 +28,10 @@
             <PropertyRef Name="IdOrder" />
             <PropertyRef Name="IdProdukt" />
             <PropertyRef Name="DataOrder" />
-            <PropertyRef Name="Price" />
           </Key>
           <Property Name="IdOrder" Type="int" Nullable="false" />
           <Property Name="IdProdukt" Type="int" Nullable="false" />
           <Property Name="DataOrder" Type="date" Nullable="false" />
-          <Property Name="Price" Type="decimal" Precision="7" Scale="2" Nullable="false" />
-          <Property Name="PriceAll" Type="nchar" MaxLength="10" />
           <Property Name="IdProvider" Type="int" />
           <Property Name="QuantityOrder" Type="int" />
         </EntityType>
@@ -185,8 +182,6 @@
     [Order].[IdOrder] AS [IdOrder], 
     [Order].[IdProdukt] AS [IdProdukt], 
     [Order].[DataOrder] AS [DataOrder], 
-    [Order].[Price] AS [Price], 
-    [Order].[PriceAll] AS [PriceAll], 
     [Order].[IdProvider] AS [IdProvider], 
     [Order].[QuantityOrder] AS [QuantityOrder]
     FROM [dbo].[Order] AS [Order]</DefiningQuery>
@@ -307,13 +302,10 @@
             <PropertyRef Name="IdOrder" />
             <PropertyRef Name="IdProdukt" />
             <PropertyRef Name="DataOrder" />
-            <PropertyRef Name="Price" />
           </Key>
           <Property Name="IdOrder" Type="Int32" Nullable="false" />
           <Property Name="IdProdukt" Type="Int32" Nullable="false" />
           <Property Name="DataOrder" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Price" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
-          <Property Name="PriceAll" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="IdProvider" Type="Int32" />
           <Property Name="QuantityOrder" Type="Int32" />
           <NavigationProperty Name="Produkts" Relationship="Self.FK_Order_Produkts" FromRole="Order" ToRole="Produkts" />
@@ -527,8 +519,6 @@
                 <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
                 <ScalarProperty Name="IdProdukt" ColumnName="IdProdukt" />
                 <ScalarProperty Name="DataOrder" ColumnName="DataOrder" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="PriceAll" ColumnName="PriceAll" />
                 <ScalarProperty Name="IdProvider" ColumnName="IdProvider" />
                 <ScalarProperty Name="QuantityOrder" ColumnName="QuantityOrder" />
               </MappingFragment>
