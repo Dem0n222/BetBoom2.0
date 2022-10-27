@@ -1,0 +1,54 @@
+﻿<Page x:Class="BetBoom.PageFolder.PageOrderHistori"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BetBoom.PageFolder"
+      mc:Ignorable="d" d:DesignWidth="500"
+      Title="PageOrderHistori" Height="550" Width="600" >
+
+    <Grid>
+        <Border
+            CornerRadius="20"
+             Width="500"
+            Height="550"
+            Background = "Black">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+                <Label Content="Название" Grid.Row="2" Grid.Column="1"
+                       Style="{StaticResource LblNormal}"/>
+                <Label Content="Дата" Grid.Row="3" Grid.Column="1"
+                       Style="{StaticResource LblNormal}"/>
+                <Label Content="Поставщик" Grid.Row="4" Grid.Column="1" 
+                       Style="{StaticResource LblNormal}"/>
+                <Label Content="Количество" Grid.Row="5" Grid.Column="1"
+                       Style="{StaticResource LblNormal}"/>
+                <TextBox x:Name="NameTb" Grid.Row="2" Grid.Column="2"
+                         Text="{Binding Produkts.NameProdukt}" IsEnabled="False"/>
+                <TextBox x:Name="DateTb" Grid.Row="3" Grid.Column="2"
+                         Text="{Binding DataOrder}" IsEnabled="False"/>
+                <TextBox x:Name="ProvaderTb" Grid.Row="4" Grid.Column="2"
+                         Text="{Binding Provider.NameProvider}" IsEnabled="False"/>
+                <TextBox x:Name="KolTb" Grid.Row="5" Grid.Column="2"
+                         Text="{Binding QuantityOrder}" IsEnabled="False"/>
+                <Button x:Name="BacBtn" Content="Назад" Grid.Row="1" Grid.Column="1"
+                        Style="{DynamicResource BtnAPP}" Click="BacBtn_Click"/>
+
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

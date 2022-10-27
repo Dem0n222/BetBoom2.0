@@ -23,7 +23,7 @@ namespace BetBoom.DataFolder
         public static DBEntities GetContext()
         {
             if (Context == null)
-               Context = new DBEntities();
+                Context = new DBEntities();
             return Context;
         }
     
@@ -32,14 +32,11 @@ namespace BetBoom.DataFolder
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<City> City { get; set; }
-        public virtual DbSet<invoice> invoice { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<Produkts> Produkts { get; set; }
         public virtual DbSet<Provider> Provider { get; set; }
         public virtual DbSet<Role> Role { get; set; }
-        public virtual DbSet<Street> Street { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<Order> Order { get; set; }
     }
 }

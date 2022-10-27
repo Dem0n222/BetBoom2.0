@@ -63,21 +63,22 @@ namespace BetBoom.PageFolder
         }
         private void AddOrder()
         {
-            DBEntities.GetContext().Order.Add(new Order()
+            var addOrder = new Order()
             {
                 IdProdukt = Int32.Parse(ProductCb.SelectedValue.ToString()),
                 DataOrder = DateTime.Now,
+                QuantityOrder = Convert.ToInt32(quantityTb.Text),
                 IdProvider = Int32.Parse(SuppliersCb.SelectedValue.ToString()),
-                QuantityOrder = Convert.ToInt32(quantityTb.Text)
                
-               
-            });
+
+            };
+            DBEntities.GetContext().Order.Add(addOrder);
             DBEntities.GetContext().SaveChanges();
         }
 
         private void HistorBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new PageInvoce());
+            NavigationService.Navigate(new PageHistori());
         }
     }
 }

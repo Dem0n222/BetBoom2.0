@@ -14,19 +14,12 @@ namespace BetBoom.DataFolder
     
     public partial class Produkts
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Produkts()
-        {
-            this.Order = new HashSet<Order>();
-        }
-    
         public int IdProdukt { get; set; }
         public string NameProdukt { get; set; }
         public int IdProvider { get; set; }
         public int Remains { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
+        public virtual Order Order { get; set; }
         public virtual Provider Provider { get; set; }
     }
 }

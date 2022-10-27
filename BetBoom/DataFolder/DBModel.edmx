@@ -5,35 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="City">
-          <Key>
-            <PropertyRef Name="IdCity" />
-          </Key>
-          <Property Name="IdCity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NameCity" Type="nvarchar" MaxLength="55" Nullable="false" />
-        </EntityType>
-        <EntityType Name="invoice">
-          <Key>
-            <PropertyRef Name="IdInvoce" />
-          </Key>
-          <Property Name="IdInvoce" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdProvider" Type="int" Nullable="false" />
-          <Property Name="IdCity" Type="int" Nullable="false" />
-          <Property Name="IdStreet" Type="int" Nullable="false" />
-        </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "Kur.dbo.Order" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="IdOrder" />
-            <PropertyRef Name="IdProdukt" />
-            <PropertyRef Name="DataOrder" />
           </Key>
-          <Property Name="IdOrder" Type="int" Nullable="false" />
+          <Property Name="IdOrder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdProdukt" Type="int" Nullable="false" />
           <Property Name="DataOrder" Type="date" Nullable="false" />
-          <Property Name="IdProvider" Type="int" />
-          <Property Name="QuantityOrder" Type="int" />
+          <Property Name="QuantityOrder" Type="int" Nullable="false" />
+          <Property Name="IdProvider" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Produkts">
           <Key>
@@ -58,13 +38,6 @@
           <Property Name="IdRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameRole" Type="nvarchar" MaxLength="55" Nullable="false" />
         </EntityType>
-        <EntityType Name="Street">
-          <Key>
-            <PropertyRef Name="IdStreet" />
-          </Key>
-          <Property Name="IdStreet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NameStreet" Type="nvarchar" MaxLength="55" Nullable="false" />
-        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -84,63 +57,27 @@
           <Property Name="Password" Type="nvarchar" MaxLength="55" Nullable="false" />
           <Property Name="IdRole" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_invoice_City">
-          <End Role="City" Type="Self.City" Multiplicity="1" />
-          <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="City">
-              <PropertyRef Name="IdCity" />
-            </Principal>
-            <Dependent Role="invoice">
-              <PropertyRef Name="IdProvider" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_invoice_Provider">
-          <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
-          <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Provider">
-              <PropertyRef Name="IdProvider" />
-            </Principal>
-            <Dependent Role="invoice">
-              <PropertyRef Name="IdStreet" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_invoice_Street">
-          <End Role="Street" Type="Self.Street" Multiplicity="1" />
-          <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Street">
-              <PropertyRef Name="IdStreet" />
-            </Principal>
-            <Dependent Role="invoice">
-              <PropertyRef Name="IdStreet" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_Produkts">
           <End Role="Produkts" Type="Self.Produkts" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Produkts">
               <PropertyRef Name="IdProdukt" />
             </Principal>
             <Dependent Role="Order">
-              <PropertyRef Name="IdProdukt" />
+              <PropertyRef Name="IdOrder" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Provider">
-          <End Role="Provider" Type="Self.Provider" Multiplicity="0..1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Provider">
               <PropertyRef Name="IdProvider" />
             </Principal>
             <Dependent Role="Order">
-              <PropertyRef Name="IdProvider" />
+              <PropertyRef Name="IdOrder" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -169,35 +106,12 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище DBModelContainer">
-          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="invoice" EntityType="Self.invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Produkts" EntityType="Self.Produkts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Street" EntityType="Self.Street" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Order" EntityType="Self.Order" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Order].[IdOrder] AS [IdOrder], 
-    [Order].[IdProdukt] AS [IdProdukt], 
-    [Order].[DataOrder] AS [DataOrder], 
-    [Order].[IdProvider] AS [IdProvider], 
-    [Order].[QuantityOrder] AS [QuantityOrder]
-    FROM [dbo].[Order] AS [Order]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK_invoice_City" Association="Self.FK_invoice_City">
-            <End Role="City" EntitySet="City" />
-            <End Role="invoice" EntitySet="invoice" />
-          </AssociationSet>
-          <AssociationSet Name="FK_invoice_Provider" Association="Self.FK_invoice_Provider">
-            <End Role="Provider" EntitySet="Provider" />
-            <End Role="invoice" EntitySet="invoice" />
-          </AssociationSet>
-          <AssociationSet Name="FK_invoice_Street" Association="Self.FK_invoice_Street">
-            <End Role="Street" EntitySet="Street" />
-            <End Role="invoice" EntitySet="invoice" />
-          </AssociationSet>
           <AssociationSet Name="FK_Order_Produkts" Association="Self.FK_Order_Produkts">
             <End Role="Produkts" EntitySet="Produkts" />
             <End Role="Order" EntitySet="Order" />
@@ -220,25 +134,17 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="City">
+        <EntityType Name="Order">
           <Key>
-            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="IdOrder" />
           </Key>
-          <Property Name="IdCity" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NameCity" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="invoice" Relationship="Self.FK_invoice_City" FromRole="City" ToRole="invoice" />
-        </EntityType>
-        <EntityType Name="invoice">
-          <Key>
-            <PropertyRef Name="IdInvoce" />
-          </Key>
-          <Property Name="IdInvoce" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdOrder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProdukt" Type="Int32" Nullable="false" />
+          <Property Name="DataOrder" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="QuantityOrder" Type="Int32" Nullable="false" />
           <Property Name="IdProvider" Type="Int32" Nullable="false" />
-          <Property Name="IdCity" Type="Int32" Nullable="false" />
-          <Property Name="IdStreet" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="City" Relationship="Self.FK_invoice_City" FromRole="invoice" ToRole="City" />
-          <NavigationProperty Name="Provider" Relationship="Self.FK_invoice_Provider" FromRole="invoice" ToRole="Provider" />
-          <NavigationProperty Name="Street" Relationship="Self.FK_invoice_Street" FromRole="invoice" ToRole="Street" />
+          <NavigationProperty Name="Produkts" Relationship="Self.FK_Order_Produkts" FromRole="Order" ToRole="Produkts" />
+          <NavigationProperty Name="Provider" Relationship="Self.FK_Order_Provider" FromRole="Order" ToRole="Provider" />
         </EntityType>
         <EntityType Name="Produkts">
           <Key>
@@ -257,9 +163,8 @@
           </Key>
           <Property Name="IdProvider" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameProvider" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="invoice" Relationship="Self.FK_invoice_Provider" FromRole="Provider" ToRole="invoice" />
-          <NavigationProperty Name="Produkts" Relationship="Self.FK_Produkts_Provider" FromRole="Provider" ToRole="Produkts" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_Provider" FromRole="Provider" ToRole="Order" />
+          <NavigationProperty Name="Produkts" Relationship="Self.FK_Produkts_Provider" FromRole="Provider" ToRole="Produkts" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -268,14 +173,6 @@
           <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameRole" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
-        </EntityType>
-        <EntityType Name="Street">
-          <Key>
-            <PropertyRef Name="IdStreet" />
-          </Key>
-          <Property Name="IdStreet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NameStreet" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="invoice" Relationship="Self.FK_invoice_Street" FromRole="Street" ToRole="invoice" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -297,65 +194,27 @@
           <Property Name="IdRole" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="IdOrder" />
-            <PropertyRef Name="IdProdukt" />
-            <PropertyRef Name="DataOrder" />
-          </Key>
-          <Property Name="IdOrder" Type="Int32" Nullable="false" />
-          <Property Name="IdProdukt" Type="Int32" Nullable="false" />
-          <Property Name="DataOrder" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IdProvider" Type="Int32" />
-          <Property Name="QuantityOrder" Type="Int32" />
-          <NavigationProperty Name="Produkts" Relationship="Self.FK_Order_Produkts" FromRole="Order" ToRole="Produkts" />
-          <NavigationProperty Name="Provider" Relationship="Self.FK_Order_Provider" FromRole="Order" ToRole="Provider" />
-        </EntityType>
-        <Association Name="FK_invoice_City">
-          <End Role="City" Type="Self.City" Multiplicity="1" />
-          <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="City">
-              <PropertyRef Name="IdCity" />
-            </Principal>
-            <Dependent Role="invoice">
-              <PropertyRef Name="IdProvider" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_invoice_Provider">
-          <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
-          <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Provider">
-              <PropertyRef Name="IdProvider" />
-            </Principal>
-            <Dependent Role="invoice">
-              <PropertyRef Name="IdStreet" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_invoice_Street">
-          <End Role="Street" Type="Self.Street" Multiplicity="1" />
-          <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Street">
-              <PropertyRef Name="IdStreet" />
-            </Principal>
-            <Dependent Role="invoice">
-              <PropertyRef Name="IdStreet" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_Produkts">
           <End Role="Produkts" Type="Self.Produkts" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Produkts">
               <PropertyRef Name="IdProdukt" />
             </Principal>
             <Dependent Role="Order">
-              <PropertyRef Name="IdProdukt" />
+              <PropertyRef Name="IdOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Provider">
+          <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Provider">
+              <PropertyRef Name="IdProvider" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="IdOrder" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -367,18 +226,6 @@
               <PropertyRef Name="IdProvider" />
             </Principal>
             <Dependent Role="Produkts">
-              <PropertyRef Name="IdProvider" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Order_Provider">
-          <End Role="Provider" Type="Self.Provider" Multiplicity="0..1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Provider">
-              <PropertyRef Name="IdProvider" />
-            </Principal>
-            <Dependent Role="Order">
               <PropertyRef Name="IdProvider" />
             </Dependent>
           </ReferentialConstraint>
@@ -396,38 +243,23 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="City" EntityType="Self.City" />
-          <EntitySet Name="invoice" EntityType="Self.invoice" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
           <EntitySet Name="Produkts" EntityType="Self.Produkts" />
           <EntitySet Name="Provider" EntityType="Self.Provider" />
           <EntitySet Name="Role" EntityType="Self.Role" />
-          <EntitySet Name="Street" EntityType="Self.Street" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="User" EntityType="Self.User" />
-          <EntitySet Name="Order" EntityType="Self.Order" />
-          <AssociationSet Name="FK_invoice_City" Association="Self.FK_invoice_City">
-            <End Role="City" EntitySet="City" />
-            <End Role="invoice" EntitySet="invoice" />
-          </AssociationSet>
-          <AssociationSet Name="FK_invoice_Provider" Association="Self.FK_invoice_Provider">
-            <End Role="Provider" EntitySet="Provider" />
-            <End Role="invoice" EntitySet="invoice" />
-          </AssociationSet>
-          <AssociationSet Name="FK_invoice_Street" Association="Self.FK_invoice_Street">
-            <End Role="Street" EntitySet="Street" />
-            <End Role="invoice" EntitySet="invoice" />
-          </AssociationSet>
           <AssociationSet Name="FK_Order_Produkts" Association="Self.FK_Order_Produkts">
             <End Role="Produkts" EntitySet="Produkts" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Provider" Association="Self.FK_Order_Provider">
+            <End Role="Provider" EntitySet="Provider" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_Produkts_Provider" Association="Self.FK_Produkts_Provider">
             <End Role="Provider" EntitySet="Provider" />
             <End Role="Produkts" EntitySet="Produkts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Provider" Association="Self.FK_Order_Provider">
-            <End Role="Provider" EntitySet="Provider" />
-            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
@@ -440,21 +272,14 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище DBModelContainer" CdmEntityContainer="DBEntities">
-          <EntitySetMapping Name="City">
-            <EntityTypeMapping TypeName="DBModel.City">
-              <MappingFragment StoreEntitySet="City">
-                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
-                <ScalarProperty Name="NameCity" ColumnName="NameCity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="invoice">
-            <EntityTypeMapping TypeName="DBModel.invoice">
-              <MappingFragment StoreEntitySet="invoice">
-                <ScalarProperty Name="IdInvoce" ColumnName="IdInvoce" />
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="DBModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+                <ScalarProperty Name="IdProdukt" ColumnName="IdProdukt" />
+                <ScalarProperty Name="DataOrder" ColumnName="DataOrder" />
+                <ScalarProperty Name="QuantityOrder" ColumnName="QuantityOrder" />
                 <ScalarProperty Name="IdProvider" ColumnName="IdProvider" />
-                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
-                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -484,14 +309,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Street">
-            <EntityTypeMapping TypeName="DBModel.Street">
-              <MappingFragment StoreEntitySet="Street">
-                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
-                <ScalarProperty Name="NameStreet" ColumnName="NameStreet" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="DBModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -510,17 +327,6 @@
                 <ScalarProperty Name="LoginUser" ColumnName="LoginUser" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="IdRole" ColumnName="IdRole" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Order">
-            <EntityTypeMapping TypeName="DBModel.Order">
-              <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
-                <ScalarProperty Name="IdProdukt" ColumnName="IdProdukt" />
-                <ScalarProperty Name="DataOrder" ColumnName="DataOrder" />
-                <ScalarProperty Name="IdProvider" ColumnName="IdProvider" />
-                <ScalarProperty Name="QuantityOrder" ColumnName="QuantityOrder" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

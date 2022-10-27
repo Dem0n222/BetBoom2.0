@@ -69,9 +69,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ClassFolder\ClassMB.cs" />
-    <Compile Include="DataFolder\City.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="ClassFolder\ClassVarible.cs" />
     <Compile Include="DataFolder\DBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -87,9 +85,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DataFolder\invoice.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataFolder\Order.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -100,9 +95,6 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Role.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataFolder\Street.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\sysdiagrams.cs">
@@ -117,8 +109,11 @@
     <Compile Include="PageFolder\PageAvto.xaml.cs">
       <DependentUpon>PageAvto.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageFolder\PageInvoce.xaml.cs">
-      <DependentUpon>PageInvoce.xaml</DependentUpon>
+    <Compile Include="PageFolder\PageHistori.xaml.cs">
+      <DependentUpon>PageHistori.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\PageOrderHistori.xaml.cs">
+      <DependentUpon>PageOrderHistori.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\PageOstki.xaml.cs">
       <DependentUpon>PageOstki.xaml</DependentUpon>
@@ -173,7 +168,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageFolder\PageInvoce.xaml">
+    <Page Include="PageFolder\PageHistori.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\PageOrderHistori.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

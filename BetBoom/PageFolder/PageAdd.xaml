@@ -12,8 +12,8 @@
         <Border
             CornerRadius="20"
             Background = "Black"
-             Width="450"
-            Height="500">
+             Width="500"
+            Height="550">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="90"/>

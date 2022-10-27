@@ -1,11 +1,11 @@
-﻿<Page x:Class="BetBoom.PageFolder.PagePrivoz"
+﻿<Page x:Class="BetBoom.PageFolder.PageHistori"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BetBoom.PageFolder"
       mc:Ignorable="d" d:DesignWidth="500"
-      Title="PagePrivoz" Height="550" Width="600" >
+      Title="PageHistori" Height="550" Width="600" >
 
     <Grid>
         <Border
@@ -28,23 +28,19 @@
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button x:Name="ListBtn" Content="Отчеты" Width="150"  Style="{StaticResource BtnAPP}" Click="ListBtn_Click"/>
-                    <Button x:Name="AddBtn" Content="Привоз" Width="150" Style="{StaticResource  BtnAPP}"/>
-                </StackPanel>
-                <Button x:Name="DbBtn" Content="Сделать Заказ" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Style="{DynamicResource BtnAPP}" Click="DbBtn_Click"/>
-                <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label Content="Поиск" Width="100" Style="{StaticResource LblNormal}" />
-                    <TextBox x:Name="LoginTb" Width="300" TextChanged="LoginTb_TextChanged"/>
-                </StackPanel>
+                <Button x:Name="BtnBac" Content="Назад" Grid.Column="1" Grid.Row="1" Style="{DynamicResource BtnAPP}" Click="BtnBac_Click" />
+                <Button x:Name="DbBtn" Content="Подробние" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Style="{DynamicResource BtnAPP}" Click="DbBtn_Click"/>
+
                 <DataGrid x:Name="OstatkDG" AutoGenerateColumns="False"
-                  IsReadOnly="True" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2">
+                  IsReadOnly="True" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="№" Width="50" Binding="{Binding IdProdukt}"/>
-                        <DataGridTextColumn Header="Наиминование" Width="*" Binding="{Binding NameProdukt}"/>
-                        <DataGridTextColumn Header="Остаток" Width="*" Binding="{Binding Remains}"/>
+                        <DataGridTextColumn Header="Наиминование" Width="*" Binding="{Binding Produkts.NameProdukt}"/>
+                        <DataGridTextColumn Header="Поставщик" Width="*" Binding="{Binding IdProvider}"/>
+                        <DataGridTextColumn Header="Количество" Width="*" Binding="{Binding Produkts.Remains}"/>
 
                     </DataGrid.Columns>
+
 
                 </DataGrid>
             </Grid>
