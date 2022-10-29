@@ -41,5 +41,10 @@ namespace BetBoom.PageFolder
             this.NavigationService.Navigate(new PageOrderHistori(OstatkDG.SelectedItem as Order));
            
         }
+
+        private void BacBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

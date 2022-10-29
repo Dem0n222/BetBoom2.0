@@ -18,55 +18,57 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="90"/>
                     <RowDefinition/>
-        
+
                     <RowDefinition/>
-                 
-                    
+
+
                     <RowDefinition/>
                     <RowDefinition Height="90"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="149*"/>
+                    <ColumnDefinition Width="101*"/>
+                    <ColumnDefinition Width="250*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="BackBtn" Content="Назад"
-                        HorizontalAlignment="Left" Style="{DynamicResource BtnAPP}" Click="BackBtn_Click"/>
+                <Button x:Name="BacBtn" Content="Назад" 
+                        Style="{DynamicResource BtnAPP}" Click="BacBtn_Click" Margin="10,30,10,10" />
 
-                <Label Content="Поставщик:" Grid.Row="1" 
-                       Style="{StaticResource  LblNormal}"/>
-                <Label Content="Товар:" Grid.Row="2" 
-                       Style="{StaticResource  LblNormal}"/>
+                <Label Content="Поставщик:" Grid.Row="1" Grid.Column="0"
+                       Style="{StaticResource  LblNormal}" />
+                <Label Content="Товар:" Grid.Row="1" 
+                       Style="{StaticResource  LblNormal}"  Margin="0,123,0,123" Grid.RowSpan="3"/>
                 <Label Content="Количество:" Grid.Row="3" 
-                       Style="{StaticResource  LblNormal}"/>
-              
+                       Style="{StaticResource  LblNormal}" />
+
 
                 <ComboBox x:Name="SuppliersCb" Grid.Column="1"
                           Grid.Row="1"  
-                          SelectedItem="{Binding Provider}" 
-                          DisplayMemberPath="NameProvider"
-                          SelectedValuePath="IdProvider"/>
+                          SelectedItem="{Binding Provader}" 
+                          DisplayMemberPath="NameProvader"
+                          SelectedValuePath="IdProvader" Margin="10,37,10,36" Grid.ColumnSpan="2"/>
                 <ComboBox x:Name="ProductCb" Grid.Column="1"
                           Grid.Row="2" 
                           SelectedItem="{Binding Produkts}" 
                           DisplayMemberPath="NameProdukt"
-                          SelectedValuePath="IdProdukt"/>
+                          SelectedValuePath="IdProdukt" Margin="10,37,10,37" 
+                          Grid.ColumnSpan="2"/>
                 <TextBox x:Name="quantityTb" Grid.Column="1"
-                          Grid.Row="3"/>
+                          Grid.Row="3" Margin="10,36,10,37" Grid.ColumnSpan="2"/>
 
 
-                <StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal">
                     <Button x:Name="SaveBtn" Content="Сохранить"
                         HorizontalAlignment="Center" Click="SaveBtn_Click"
-                        Style="{DynamicResource BtnAPP}"
+                        Style="{DynamicResource BtnAPP}" Width="225"
                         />
-                <Button x:Name="HistorBtn" Content="История заказов"
+                    <Button x:Name="HistorBtn" Content="История заказов"
                         HorizontalAlignment="Center"
                         Style="{DynamicResource BtnAPP}"
-                        Click="HistorBtn_Click"/>
+                        Click="HistorBtn_Click" Width="225"/>
                 </StackPanel>
             </Grid>
         </Border>
-       
+
     </Grid>
 </Page>

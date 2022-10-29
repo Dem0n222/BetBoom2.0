@@ -40,13 +40,13 @@
                 <TextBox x:Name="NameTb" Grid.Row="2" Grid.Column="2"
                          Text="{Binding Produkts.NameProdukt}" IsEnabled="False"/>
                 <TextBox x:Name="DateTb" Grid.Row="3" Grid.Column="2"
-                         Text="{Binding DataOrder}" IsEnabled="False"/>
+                         Text="{Binding DatdOrder}" IsEnabled="False"/>
                 <TextBox x:Name="ProvaderTb" Grid.Row="4" Grid.Column="2"
-                         Text="{Binding Provider.NameProvider}" IsEnabled="False"/>
+                         Text="{Binding Provader.NameProvader}" IsEnabled="False"/>
                 <TextBox x:Name="KolTb" Grid.Row="5" Grid.Column="2"
                          Text="{Binding QuantityOrder}" IsEnabled="False"/>
                 <Button x:Name="BacBtn" Content="Назад" Grid.Row="1" Grid.Column="1"
-                        Style="{DynamicResource BtnAPP}" Click="BacBtn_Click"/>
+                        Style="{DynamicResource BtnAPP}" Click="BacBtn_Click" Margin="10,30,10,10"/>
 
             </Grid>
         </Border>

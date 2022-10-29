@@ -91,7 +91,7 @@
     <Compile Include="DataFolder\Produkts.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataFolder\Provider.cs">
+    <Compile Include="DataFolder\Provader.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataFolder\Role.cs">
@@ -106,14 +106,26 @@
     <Compile Include="PageFolder\PageAdd.xaml.cs">
       <DependentUpon>PageAdd.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\PageAddSot.xaml.cs">
+      <DependentUpon>PageAddSot.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\PageAvto.xaml.cs">
       <DependentUpon>PageAvto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\PageEditStaff.xaml.cs">
+      <DependentUpon>PageEditStaff.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\PageHistori.xaml.cs">
       <DependentUpon>PageHistori.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageFolder\PageListSot.xaml.cs">
+      <DependentUpon>PageListSot.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageFolder\PageOrderHistori.xaml.cs">
       <DependentUpon>PageOrderHistori.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageFolder\PageOstatkiAdmin.xaml.cs">
+      <DependentUpon>PageOstatkiAdmin.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageFolder\PageOstki.xaml.cs">
       <DependentUpon>PageOstki.xaml</DependentUpon>
@@ -164,7 +176,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageFolder\PageAddSot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolder\PageAvto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\PageEditStaff.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -172,7 +192,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageFolder\PageListSot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageFolder\PageOrderHistori.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageFolder\PageOstatkiAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -192,12 +220,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ResursFolder\ImageFolder\RollUp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ResursFolder\ImageFolder\Exit.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ResursFolder\ImageFolder\Logo.png" />
@@ -222,6 +244,7 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="ResursFolder\ImageFolder\LogOut.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

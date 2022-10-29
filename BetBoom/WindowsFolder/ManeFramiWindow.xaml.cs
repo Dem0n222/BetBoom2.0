@@ -36,5 +36,11 @@ namespace BetBoom.WindowsFolder
         {
             ClassFolder.ClassMB.ExitMessage();       // Закрыть
         }
+
+        private void logquit_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Navigate(new PageFolder.PageAvto());
+            
+        }
     }
 }

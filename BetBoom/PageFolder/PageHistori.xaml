@@ -28,15 +28,16 @@
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="BtnBac" Content="Назад" Grid.Column="1" Grid.Row="1" Style="{DynamicResource BtnAPP}" Click="BtnBac_Click" />
+                <Button x:Name="BacBtn" Content="Назад" Grid.Row="1" Grid.Column="1"
+                        Style="{DynamicResource BtnAPP}" Click="BacBtn_Click" Margin="10,30,10,10"/>
                 <Button x:Name="DbBtn" Content="Подробние" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Style="{DynamicResource BtnAPP}" Click="DbBtn_Click"/>
 
                 <DataGrid x:Name="OstatkDG" AutoGenerateColumns="False"
                   IsReadOnly="True" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="№" Width="50" Binding="{Binding IdProdukt}"/>
+                        <DataGridTextColumn Header="№" Width="50" Binding="{Binding IdOrder}"/>
                         <DataGridTextColumn Header="Наиминование" Width="*" Binding="{Binding Produkts.NameProdukt}"/>
-                        <DataGridTextColumn Header="Поставщик" Width="*" Binding="{Binding IdProvider}"/>
+                        <DataGridTextColumn Header="Поставщик" Width="*" Binding="{Binding Provader.NameProvader}"/>
                         <DataGridTextColumn Header="Количество" Width="*" Binding="{Binding Produkts.Remains}"/>
 
                     </DataGrid.Columns>

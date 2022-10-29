@@ -26,7 +26,7 @@ namespace BetBoom.PageFolder
         {
             InitializeComponent();
             OstatkDG.ItemsSource = DBEntities.GetContext().Produkts.ToList().
-                 OrderBy(c => c.IdProdukt);
+                 OrderBy(c => c.IdProduk);
         }
 
         private void ListBtn_Click(object sender, RoutedEventArgs e)

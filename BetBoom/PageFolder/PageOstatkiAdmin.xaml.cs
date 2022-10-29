@@ -18,35 +18,15 @@ using BetBoom.ClassFolder;
 namespace BetBoom.PageFolder
 {
     /// <summary>
-    /// Логика взаимодействия для PageOstki.xaml
+    /// Логика взаимодействия для PageOstatkiAdmin.xaml
     /// </summary>
-    public partial class PageOstki : Page
+    public partial class PageOstatkiAdmin : Page
     {
-        public PageOstki()
+        public PageOstatkiAdmin()
         {
             InitializeComponent();
             OstatkDG.ItemsSource = DBEntities.GetContext().Produkts.ToList().
-                 OrderBy(c => c.IdProduk);
-
-        }
-
-        private void AddBtn_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new PagePrivoz());
-        }
-
-        private void LoginTb_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                OstatkDG.ItemsSource = DBEntities.GetContext().Produkts.Where
-                (u => u.NameProdukt.StartsWith(LoginTb.Text)).ToList();
-            }
-            catch (Exception ex)
-            {
-                ClassMB.MBError(ex);
-            }
-
+                OrderBy(c => c.IdProduk);
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
@@ -56,7 +36,25 @@ namespace BetBoom.PageFolder
             DBEntities.GetContext().SaveChanges();
             OstatkDG.ItemsSource = DBEntities.GetContext().Produkts.ToList().
                  OrderBy(c => c.IdProduk);
+        }
 
+        private void LoginTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            try
+            {
+                OstatkDG.ItemsSource = DBEntities.GetContext().Produkts.Where
+                (u => u.NameProdukt.StartsWith(LoginTb.Text)).ToList();
+            }
+            catch (Exception ex)
+            {
+                ClassMB.MBError(ex);
+            }
+        }
+
+        private void ListBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new PageAvto());
         }
     }
 }

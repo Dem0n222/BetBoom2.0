@@ -11,5 +11,7 @@ namespace BetBoom.ClassFolder
         public static int IdProdukts { get; set;}
         public static int IdProvider { get; set;}
         public static int IdOrder { get; set;} 
+        public static int IdUser { get; set; }
+        public static string IdRole { get; set; }
     }
 }

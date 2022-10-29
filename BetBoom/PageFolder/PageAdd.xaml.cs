@@ -28,7 +28,7 @@ namespace BetBoom.PageFolder
             ProductCb.ItemsSource = DBEntities.GetContext()
                 .Produkts.ToList();
             SuppliersCb.ItemsSource = DBEntities.GetContext()
-                .Provider.ToList();
+                .Provader.ToList();
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
@@ -65,10 +65,10 @@ namespace BetBoom.PageFolder
         {
             var addOrder = new Order()
             {
-                IdProdukt = Int32.Parse(ProductCb.SelectedValue.ToString()),
-                DataOrder = DateTime.Now,
+                IdProdukt = (ProductCb.SelectedItem as Produkts).IdProduk,
+                DatdOrder = DateTime.Now,
                 QuantityOrder = Convert.ToInt32(quantityTb.Text),
-                IdProvider = Int32.Parse(SuppliersCb.SelectedValue.ToString()),
+                IdProvader = (SuppliersCb.SelectedItem as Provader).IdProvader,
                
 
             };
@@ -79,6 +79,11 @@ namespace BetBoom.PageFolder
         private void HistorBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new PageHistori());
+        }
+
+        private void BacBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

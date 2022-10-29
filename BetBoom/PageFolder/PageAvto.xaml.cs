@@ -43,41 +43,47 @@ namespace BetBoom.PageFolder
             }
             else
             {
-                try
-                {
-                    var user = DBEntities.GetContext().User.FirstOrDefault
-                        (u => u.LoginUser == LoginTB.Text);
-                    if (user == null)
+                
+                
+                    try
                     {
-                        ClassMB.MBError("Пользователь не найден");
-                        LoginTB.Focus();
-                        return;
-                    }
-                    if (user.Password != PasswordTB.Password)
-                    {
-                        ClassMB.MBError("Введен не правильный пароль");
-                        PasswordTB.Focus();
-                        return;
-                    }
-                    else
-                    {
-                        switch (user.IdRole)
+                        var user = DBEntities.GetContext().User.FirstOrDefault
+                            (u => u.Login == LoginTB.Text);
+                        if (user == null)
                         {
-                            case 1:
-                                NavigationService.Navigate(new PageOstki());
-                                
+                            ClassMB.MBError("Пользователь не найден");
+                            LoginTB.Focus();
+                            return;
+                        }
+                        if (user.Password != PasswordTB.Password)
+                        {
+                            ClassMB.MBError("Введен не правильный пароль");
+                            PasswordTB.Focus();
+                            return;
+                        }
+                        else
+                        {
+                            switch (user.IdRole)
+                            {
+                                case 1:
+                                    NavigationService.Navigate(new PageOstatkiAdmin());
+
+                                    break;
+                                case 2:
+                                    NavigationService.Navigate(new PageOstki());
+                                    break;
+                                case 3:
+                                NavigationService.Navigate(new PageListSot());
                                 break;
-                            case 2:
-                                
-                                break;
+                            }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    ClassMB.MBError(ex);
-                }
-            }
+                    catch (Exception ex)
+                    {
+                        ClassMB.MBError(ex);
+                    }
+                
+             }
 
 
         }

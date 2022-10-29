@@ -15,7 +15,8 @@
             <RowDefinition Height="37"/>
             <RowDefinition Height="37"/>
 
-            <RowDefinition Height="559*"/>
+            <RowDefinition Height="44*"/>
+            <RowDefinition Height="515*"/>
             <RowDefinition Height="17*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -23,24 +24,32 @@
             <ColumnDefinition Width="71*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
-        <Image Style="{StaticResource LogoImg}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="2" Margin="10,10,10,10"/>
+        <Image Style="{StaticResource LogoImg}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="3" Margin="0,23,20,41"/>
         <Frame Grid.Row="2" x:Name="MainFrame" 
-                       Grid.ColumnSpan="3" Background="Black" Grid.RowSpan="2"  NavigationUIVisibility="Hidden"
-               Height="550" Width="600" />
-        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Height="57" Width="113" Grid.ColumnSpan="2" >
+                       Grid.ColumnSpan="3" Background="Black" Grid.RowSpan="3"  NavigationUIVisibility="Hidden"
+               Height="550" Width="600" Margin="0,13,0,13" />
+        <Border  Grid.Row="2" Grid.ColumnSpan="3" Background="Black">
 
-            <Image Height="37" x:Name="RollUpIm"
-                           HorizontalAlignment="Right"
+        </Border>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="44" Width="149" Margin="151,0,0,0" Grid.ColumnSpan="2" >
+
+            <Image x:Name="logquit" 
+                   Source="/ResursFolder/ImageFolder/LogOut.png"
+                   MouseLeftButtonDown="logquit_MouseLeftButtonDown"
+                   Style="{StaticResource LogoImg}"/>
+            <Image Height="34" x:Name="RollUpIm"
                            Source="/ResursFolder/ImageFolder/Roll.png"
                            MouseLeftButtonDown="RollUpIm_MouseLeftButtonDown"
                            Style="{StaticResource LogoImg}" />
-            <Image Height="37" x:Name="LogOutIm"
+            <Image Height="34" x:Name="LogOutIm"
                            Source="/ResursFolder/ImageFolder/Out.png"
                            MouseLeftButtonDown="LogOutIm_MouseLeftButtonDown"
                          Style="{StaticResource LogoImg}" />
 
+
         </StackPanel>
         <Button x:Name="Bac" Background="Black" Grid.Row="4" Grid.Column="2"/>
+        
 
     </Grid>
 </Window>

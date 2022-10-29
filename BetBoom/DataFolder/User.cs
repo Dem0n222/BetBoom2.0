@@ -15,8 +15,8 @@ namespace BetBoom.DataFolder
     public partial class User
     {
         public int IdUser { get; set; }
-        public string LoginUser { get; set; }
         public string Password { get; set; }
+        public string Login { get; set; }
         public int IdRole { get; set; }
     
         public virtual Role Role { get; set; }

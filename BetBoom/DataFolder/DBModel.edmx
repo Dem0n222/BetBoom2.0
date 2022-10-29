@@ -10,26 +10,25 @@
             <PropertyRef Name="IdOrder" />
           </Key>
           <Property Name="IdOrder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProvader" Type="int" Nullable="false" />
           <Property Name="IdProdukt" Type="int" Nullable="false" />
-          <Property Name="DataOrder" Type="date" Nullable="false" />
+          <Property Name="DatdOrder" Type="date" Nullable="false" />
           <Property Name="QuantityOrder" Type="int" Nullable="false" />
-          <Property Name="IdProvider" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Produkts">
           <Key>
-            <PropertyRef Name="IdProdukt" />
+            <PropertyRef Name="IdProduk" />
           </Key>
-          <Property Name="IdProdukt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProduk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameProdukt" Type="nvarchar" MaxLength="55" Nullable="false" />
-          <Property Name="IdProvider" Type="int" Nullable="false" />
           <Property Name="Remains" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Provider">
+        <EntityType Name="Provader">
           <Key>
-            <PropertyRef Name="IdProvider" />
+            <PropertyRef Name="IdProvader" />
           </Key>
-          <Property Name="IdProvider" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NameProvider" Type="nvarchar" MaxLength="55" Nullable="false" />
+          <Property Name="IdProvader" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameProvader" Type="nvarchar" MaxLength="55" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -53,43 +52,31 @@
             <PropertyRef Name="IdUser" />
           </Key>
           <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LoginUser" Type="nvarchar" MaxLength="55" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="55" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="505" Nullable="false" />
           <Property Name="IdRole" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Order_Produkts">
           <End Role="Produkts" Type="Self.Produkts" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produkts">
+              <PropertyRef Name="IdProduk" />
+            </Principal>
+            <Dependent Role="Order">
               <PropertyRef Name="IdProdukt" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="IdOrder" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Order_Provider">
-          <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+        <Association Name="FK_Order_Provader">
+          <End Role="Provader" Type="Self.Provader" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Provider">
-              <PropertyRef Name="IdProvider" />
+            <Principal Role="Provader">
+              <PropertyRef Name="IdProvader" />
             </Principal>
             <Dependent Role="Order">
-              <PropertyRef Name="IdOrder" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Produkts_Provider">
-          <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
-          <End Role="Produkts" Type="Self.Produkts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Provider">
-              <PropertyRef Name="IdProvider" />
-            </Principal>
-            <Dependent Role="Produkts">
-              <PropertyRef Name="IdProvider" />
+              <PropertyRef Name="IdProvader" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -108,7 +95,7 @@
         <EntityContainer Name="Хранилище DBModelContainer">
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Produkts" EntityType="Self.Produkts" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provader" EntityType="Self.Provader" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -116,13 +103,9 @@
             <End Role="Produkts" EntitySet="Produkts" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK_Order_Provider" Association="Self.FK_Order_Provider">
-            <End Role="Provider" EntitySet="Provider" />
+          <AssociationSet Name="FK_Order_Provader" Association="Self.FK_Order_Provader">
+            <End Role="Provader" EntitySet="Provader" />
             <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Produkts_Provider" Association="Self.FK_Produkts_Provider">
-            <End Role="Provider" EntitySet="Provider" />
-            <End Role="Produkts" EntitySet="Produkts" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
@@ -139,32 +122,29 @@
             <PropertyRef Name="IdOrder" />
           </Key>
           <Property Name="IdOrder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProvader" Type="Int32" Nullable="false" />
           <Property Name="IdProdukt" Type="Int32" Nullable="false" />
-          <Property Name="DataOrder" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DatdOrder" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="QuantityOrder" Type="Int32" Nullable="false" />
-          <Property Name="IdProvider" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Produkts" Relationship="Self.FK_Order_Produkts" FromRole="Order" ToRole="Produkts" />
-          <NavigationProperty Name="Provider" Relationship="Self.FK_Order_Provider" FromRole="Order" ToRole="Provider" />
+          <NavigationProperty Name="Provader" Relationship="Self.FK_Order_Provader" FromRole="Order" ToRole="Provader" />
         </EntityType>
         <EntityType Name="Produkts">
           <Key>
-            <PropertyRef Name="IdProdukt" />
+            <PropertyRef Name="IdProduk" />
           </Key>
-          <Property Name="IdProdukt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProduk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameProdukt" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IdProvider" Type="Int32" Nullable="false" />
           <Property Name="Remains" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_Produkts" FromRole="Produkts" ToRole="Order" />
-          <NavigationProperty Name="Provider" Relationship="Self.FK_Produkts_Provider" FromRole="Produkts" ToRole="Provider" />
         </EntityType>
-        <EntityType Name="Provider">
+        <EntityType Name="Provader">
           <Key>
-            <PropertyRef Name="IdProvider" />
+            <PropertyRef Name="IdProvader" />
           </Key>
-          <Property Name="IdProvider" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NameProvider" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Provider" FromRole="Provider" ToRole="Order" />
-          <NavigationProperty Name="Produkts" Relationship="Self.FK_Produkts_Provider" FromRole="Provider" ToRole="Produkts" />
+          <Property Name="IdProvader" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameProvader" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Provader" FromRole="Provader" ToRole="Order" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -189,44 +169,32 @@
             <PropertyRef Name="IdUser" />
           </Key>
           <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LoginUser" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="505" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdRole" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Order_Produkts">
           <End Role="Produkts" Type="Self.Produkts" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produkts">
+              <PropertyRef Name="IdProduk" />
+            </Principal>
+            <Dependent Role="Order">
               <PropertyRef Name="IdProdukt" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="IdOrder" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Order_Provider">
-          <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+        <Association Name="FK_Order_Provader">
+          <End Role="Provader" Type="Self.Provader" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Provider">
-              <PropertyRef Name="IdProvider" />
+            <Principal Role="Provader">
+              <PropertyRef Name="IdProvader" />
             </Principal>
             <Dependent Role="Order">
-              <PropertyRef Name="IdOrder" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Produkts_Provider">
-          <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
-          <End Role="Produkts" Type="Self.Produkts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Provider">
-              <PropertyRef Name="IdProvider" />
-            </Principal>
-            <Dependent Role="Produkts">
-              <PropertyRef Name="IdProvider" />
+              <PropertyRef Name="IdProvader" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -245,7 +213,7 @@
         <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Order" EntityType="Self.Order" />
           <EntitySet Name="Produkts" EntityType="Self.Produkts" />
-          <EntitySet Name="Provider" EntityType="Self.Provider" />
+          <EntitySet Name="Provader" EntityType="Self.Provader" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="User" EntityType="Self.User" />
@@ -253,13 +221,9 @@
             <End Role="Produkts" EntitySet="Produkts" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK_Order_Provider" Association="Self.FK_Order_Provider">
-            <End Role="Provider" EntitySet="Provider" />
+          <AssociationSet Name="FK_Order_Provader" Association="Self.FK_Order_Provader">
+            <End Role="Provader" EntitySet="Provader" />
             <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Produkts_Provider" Association="Self.FK_Produkts_Provider">
-            <End Role="Provider" EntitySet="Provider" />
-            <End Role="Produkts" EntitySet="Produkts" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
@@ -276,28 +240,27 @@
             <EntityTypeMapping TypeName="DBModel.Order">
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+                <ScalarProperty Name="IdProvader" ColumnName="IdProvader" />
                 <ScalarProperty Name="IdProdukt" ColumnName="IdProdukt" />
-                <ScalarProperty Name="DataOrder" ColumnName="DataOrder" />
+                <ScalarProperty Name="DatdOrder" ColumnName="DatdOrder" />
                 <ScalarProperty Name="QuantityOrder" ColumnName="QuantityOrder" />
-                <ScalarProperty Name="IdProvider" ColumnName="IdProvider" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Produkts">
             <EntityTypeMapping TypeName="DBModel.Produkts">
               <MappingFragment StoreEntitySet="Produkts">
-                <ScalarProperty Name="IdProdukt" ColumnName="IdProdukt" />
+                <ScalarProperty Name="IdProduk" ColumnName="IdProduk" />
                 <ScalarProperty Name="NameProdukt" ColumnName="NameProdukt" />
-                <ScalarProperty Name="IdProvider" ColumnName="IdProvider" />
                 <ScalarProperty Name="Remains" ColumnName="Remains" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Provider">
-            <EntityTypeMapping TypeName="DBModel.Provider">
-              <MappingFragment StoreEntitySet="Provider">
-                <ScalarProperty Name="IdProvider" ColumnName="IdProvider" />
-                <ScalarProperty Name="NameProvider" ColumnName="NameProvider" />
+          <EntitySetMapping Name="Provader">
+            <EntityTypeMapping TypeName="DBModel.Provader">
+              <MappingFragment StoreEntitySet="Provader">
+                <ScalarProperty Name="IdProvader" ColumnName="IdProvader" />
+                <ScalarProperty Name="NameProvader" ColumnName="NameProvader" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -324,8 +287,8 @@
             <EntityTypeMapping TypeName="DBModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="LoginUser" ColumnName="LoginUser" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="IdRole" ColumnName="IdRole" />
               </MappingFragment>
             </EntityTypeMapping>
