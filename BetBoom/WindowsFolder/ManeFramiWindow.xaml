@@ -26,9 +26,9 @@
         </Grid.ColumnDefinitions>
         <Image Style="{StaticResource LogoImg}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="3" Margin="0,23,20,41"/>
         <Frame Grid.Row="2" x:Name="MainFrame" 
-                       Grid.ColumnSpan="3" Background="Black" Grid.RowSpan="3"  NavigationUIVisibility="Hidden"
-               Height="550" Width="600" Margin="0,13,0,13" />
-        <Border  Grid.Row="2" Grid.ColumnSpan="3" Background="Black">
+                       Grid.ColumnSpan="3" Background="#2F2F2F" Grid.RowSpan="3"  NavigationUIVisibility="Hidden"
+               Height="550" Width="600" Margin="0,13,0,13" Navigated="MainFrame_Navigated" />
+        <Border  Grid.Row="2" Grid.ColumnSpan="3" Background="#2F2F2F">
 
         </Border>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="44" Width="149" Margin="151,0,0,0" Grid.ColumnSpan="2" >

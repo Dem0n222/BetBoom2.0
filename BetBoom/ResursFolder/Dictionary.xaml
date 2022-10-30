@@ -43,7 +43,7 @@
         <Setter Property="Padding" Value="5"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Foreground" Value="#2F2F2F"/>
         <Setter Property="Height" Value="50"/>
         <Setter Property="BorderBrush" Value="DarkRed"/>
         <Setter Property="Foreground" Value="White"/>
@@ -59,7 +59,7 @@
         <Setter Property="Padding" Value="5"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Foreground" Value="#2F2F2F"/>
         <Setter Property="Height" Value="50"/>
         <Setter Property="BorderBrush" Value="DarkRed"/>
         <Setter Property="Foreground" Value="White"/>
@@ -83,7 +83,7 @@
         <Setter Property="Margin" Value="10"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Foreground" Value="#2F2F2F"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate x:Name="btnActiv" TargetType="{x:Type Button}">
@@ -128,7 +128,7 @@
     </Style>
     <!--////////////////////////////////////////////Списки////////////////////////////////////////////-->
     <Style TargetType="DataGrid">
-        <Setter Property="Background" Value="Black"/>
+        <Setter Property="Background" Value="#2F2F2F"/>
         <Setter Property="BorderBrush" Value="Gold"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>

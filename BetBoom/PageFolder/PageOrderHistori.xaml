@@ -12,7 +12,7 @@
             CornerRadius="20"
              Width="500"
             Height="550"
-            Background = "Black">
+            Background = "#2F2F2F">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10"/>

@@ -42,5 +42,10 @@ namespace BetBoom.WindowsFolder
             MainFrame.Navigate(new PageFolder.PageAvto());
             
         }
+
+        private void MainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+
+        }
     }
 }
