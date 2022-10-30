@@ -30,7 +30,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Width="340">
                     <Button x:Name="ListBtn" Content="Отчеты" Width="150"  Style="{StaticResource BtnAPP}" Click="ListBtn_Click"/>
-                    <Button x:Name="AddBtn" Content="Привоз" Width="150" Style="{StaticResource  BtnAPP}"/>
+                    <Button x:Name="AddBtn" Content="Заказ" Width="150" Style="{StaticResource  BtnAPP}"/>
                 </StackPanel>
                 <Button x:Name="DbBtn" Content="Сделать Заказ" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Style="{DynamicResource BtnAPP}" Click="DbBtn_Click" Margin="10,10,0,10"/>
                 <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Width="420">
