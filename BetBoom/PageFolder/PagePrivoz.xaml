@@ -40,7 +40,7 @@
                 <DataGrid x:Name="OstatkDG" AutoGenerateColumns="False"
                   IsReadOnly="True" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="№" Width="50" Binding="{Binding IdProdukt}"/>
+                        <DataGridTextColumn Header="№" Width="50" Binding="{Binding IdProduk}"/>
                         <DataGridTextColumn Header="Наиминование" Width="*" Binding="{Binding NameProdukt}"/>
                         <DataGridTextColumn Header="Остаток" Width="*" Binding="{Binding Remains}"/>
 

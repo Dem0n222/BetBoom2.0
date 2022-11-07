@@ -42,8 +42,6 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="№" Width="50" Binding="{Binding IdProduk}"/>
                         <DataGridTextColumn Header="Наиминование" Width="*" Binding="{Binding NameProdukt}"/>
-                      
-
                         <DataGridTextColumn Header="Остаток" Width="*" Binding="{Binding Remains}"/>
                     </DataGrid.Columns>
                 </DataGrid>
