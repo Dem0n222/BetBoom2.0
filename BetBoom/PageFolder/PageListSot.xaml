@@ -14,9 +14,7 @@
             Width="550"
             Height="500"
             Background="#2F2F2F">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="50"/>
-            </Border.Effect>
+          
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="80"/>

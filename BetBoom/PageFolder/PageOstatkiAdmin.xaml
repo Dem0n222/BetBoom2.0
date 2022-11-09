@@ -11,6 +11,7 @@
     <Grid>
         <Grid>
             <Border
+                
             CornerRadius="20"
           Width="500"
             Height="550"
