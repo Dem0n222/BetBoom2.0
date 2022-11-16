@@ -12,20 +12,18 @@ namespace BetBoom.DataFolder
     using System;
     using System.Collections.Generic;
     
-    public partial class Produkts
+    public partial class Strit
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Produkts()
+        public Strit()
         {
-            this.Order = new HashSet<Order>();
+            this.Provader = new HashSet<Provader>();
         }
     
-        public int IdProduk { get; set; }
-        public string NameProdukt { get; set; }
-        public int Remains { get; set; }
-        public decimal Price { get; set; }
+        public int IdStrit { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
+        public virtual ICollection<Provader> Provader { get; set; }
     }
 }

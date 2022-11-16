@@ -5,6 +5,20 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cantri">
+          <Key>
+            <PropertyRef Name="IdCantri" />
+          </Key>
+          <Property Name="IdCantri" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="55" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cite">
+          <Key>
+            <PropertyRef Name="IdCite" />
+          </Key>
+          <Property Name="IdCite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="55" Nullable="false" />
+        </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="IdOrder" />
@@ -22,6 +36,7 @@
           <Property Name="IdProduk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameProdukt" Type="nvarchar" MaxLength="55" Nullable="false" />
           <Property Name="Remains" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="7" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Provader">
           <Key>
@@ -29,6 +44,9 @@
           </Key>
           <Property Name="IdProvader" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameProvader" Type="nvarchar" MaxLength="55" Nullable="false" />
+          <Property Name="IdCantri" Type="int" Nullable="false" />
+          <Property Name="IdCite" Type="int" Nullable="false" />
+          <Property Name="IdStrit" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -36,6 +54,13 @@
           </Key>
           <Property Name="IdRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameRole" Type="nvarchar" MaxLength="55" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Strit">
+          <Key>
+            <PropertyRef Name="IdStrit" />
+          </Key>
+          <Property Name="IdStrit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="55" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -53,7 +78,7 @@
           </Key>
           <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="55" Nullable="false" />
-          <Property Name="Login" Type="nvarchar" MaxLength="505" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="55" Nullable="false" />
           <Property Name="IdRole" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Order_Produkts">
@@ -80,6 +105,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Provader_Cantri">
+          <End Role="Cantri" Type="Self.Cantri" Multiplicity="1" />
+          <End Role="Provader" Type="Self.Provader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cantri">
+              <PropertyRef Name="IdCantri" />
+            </Principal>
+            <Dependent Role="Provader">
+              <PropertyRef Name="IdCantri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Provader_Cite">
+          <End Role="Cite" Type="Self.Cite" Multiplicity="1" />
+          <End Role="Provader" Type="Self.Provader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cite">
+              <PropertyRef Name="IdCite" />
+            </Principal>
+            <Dependent Role="Provader">
+              <PropertyRef Name="IdCite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Provader_Strit">
+          <End Role="Strit" Type="Self.Strit" Multiplicity="1" />
+          <End Role="Provader" Type="Self.Provader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strit">
+              <PropertyRef Name="IdStrit" />
+            </Principal>
+            <Dependent Role="Provader">
+              <PropertyRef Name="IdStrit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -93,10 +154,13 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище DBModelContainer">
+          <EntitySet Name="Cantri" EntityType="Self.Cantri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cite" EntityType="Self.Cite" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Produkts" EntityType="Self.Produkts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provader" EntityType="Self.Provader" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Strit" EntityType="Self.Strit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Order_Produkts" Association="Self.FK_Order_Produkts">
@@ -106,6 +170,18 @@
           <AssociationSet Name="FK_Order_Provader" Association="Self.FK_Order_Provader">
             <End Role="Provader" EntitySet="Provader" />
             <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Provader_Cantri" Association="Self.FK_Provader_Cantri">
+            <End Role="Cantri" EntitySet="Cantri" />
+            <End Role="Provader" EntitySet="Provader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Provader_Cite" Association="Self.FK_Provader_Cite">
+            <End Role="Cite" EntitySet="Cite" />
+            <End Role="Provader" EntitySet="Provader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Provader_Strit" Association="Self.FK_Provader_Strit">
+            <End Role="Strit" EntitySet="Strit" />
+            <End Role="Provader" EntitySet="Provader" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
@@ -117,6 +193,22 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cantri">
+          <Key>
+            <PropertyRef Name="IdCantri" />
+          </Key>
+          <Property Name="IdCantri" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Provader" Relationship="Self.FK_Provader_Cantri" FromRole="Cantri" ToRole="Provader" />
+        </EntityType>
+        <EntityType Name="Cite">
+          <Key>
+            <PropertyRef Name="IdCite" />
+          </Key>
+          <Property Name="IdCite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Provader" Relationship="Self.FK_Provader_Cite" FromRole="Cite" ToRole="Provader" />
+        </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="IdOrder" />
@@ -136,6 +228,7 @@
           <Property Name="IdProduk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameProdukt" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Remains" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_Produkts" FromRole="Produkts" ToRole="Order" />
         </EntityType>
         <EntityType Name="Provader">
@@ -144,7 +237,13 @@
           </Key>
           <Property Name="IdProvader" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameProvader" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdCantri" Type="Int32" Nullable="false" />
+          <Property Name="IdCite" Type="Int32" Nullable="false" />
+          <Property Name="IdStrit" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cantri" Relationship="Self.FK_Provader_Cantri" FromRole="Provader" ToRole="Cantri" />
+          <NavigationProperty Name="Cite" Relationship="Self.FK_Provader_Cite" FromRole="Provader" ToRole="Cite" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_Provader" FromRole="Provader" ToRole="Order" />
+          <NavigationProperty Name="Strit" Relationship="Self.FK_Provader_Strit" FromRole="Provader" ToRole="Strit" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -153,6 +252,14 @@
           <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameRole" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Strit">
+          <Key>
+            <PropertyRef Name="IdStrit" />
+          </Key>
+          <Property Name="IdStrit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Provader" Relationship="Self.FK_Provader_Strit" FromRole="Strit" ToRole="Provader" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -170,10 +277,34 @@
           </Key>
           <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Password" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Login" Type="String" MaxLength="505" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdRole" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
+        <Association Name="FK_Provader_Cantri">
+          <End Role="Cantri" Type="Self.Cantri" Multiplicity="1" />
+          <End Role="Provader" Type="Self.Provader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cantri">
+              <PropertyRef Name="IdCantri" />
+            </Principal>
+            <Dependent Role="Provader">
+              <PropertyRef Name="IdCantri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Provader_Cite">
+          <End Role="Cite" Type="Self.Cite" Multiplicity="1" />
+          <End Role="Provader" Type="Self.Provader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cite">
+              <PropertyRef Name="IdCite" />
+            </Principal>
+            <Dependent Role="Provader">
+              <PropertyRef Name="IdCite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Order_Produkts">
           <End Role="Produkts" Type="Self.Produkts" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -198,6 +329,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Provader_Strit">
+          <End Role="Strit" Type="Self.Strit" Multiplicity="1" />
+          <End Role="Provader" Type="Self.Provader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strit">
+              <PropertyRef Name="IdStrit" />
+            </Principal>
+            <Dependent Role="Provader">
+              <PropertyRef Name="IdStrit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -211,12 +354,23 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cantri" EntityType="Self.Cantri" />
+          <EntitySet Name="Cite" EntityType="Self.Cite" />
           <EntitySet Name="Order" EntityType="Self.Order" />
           <EntitySet Name="Produkts" EntityType="Self.Produkts" />
           <EntitySet Name="Provader" EntityType="Self.Provader" />
           <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Strit" EntityType="Self.Strit" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Provader_Cantri" Association="Self.FK_Provader_Cantri">
+            <End Role="Cantri" EntitySet="Cantri" />
+            <End Role="Provader" EntitySet="Provader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Provader_Cite" Association="Self.FK_Provader_Cite">
+            <End Role="Cite" EntitySet="Cite" />
+            <End Role="Provader" EntitySet="Provader" />
+          </AssociationSet>
           <AssociationSet Name="FK_Order_Produkts" Association="Self.FK_Order_Produkts">
             <End Role="Produkts" EntitySet="Produkts" />
             <End Role="Order" EntitySet="Order" />
@@ -224,6 +378,10 @@
           <AssociationSet Name="FK_Order_Provader" Association="Self.FK_Order_Provader">
             <End Role="Provader" EntitySet="Provader" />
             <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Provader_Strit" Association="Self.FK_Provader_Strit">
+            <End Role="Strit" EntitySet="Strit" />
+            <End Role="Provader" EntitySet="Provader" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
@@ -236,6 +394,22 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище DBModelContainer" CdmEntityContainer="DBEntities">
+          <EntitySetMapping Name="Cantri">
+            <EntityTypeMapping TypeName="DBModel.Cantri">
+              <MappingFragment StoreEntitySet="Cantri">
+                <ScalarProperty Name="IdCantri" ColumnName="IdCantri" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cite">
+            <EntityTypeMapping TypeName="DBModel.Cite">
+              <MappingFragment StoreEntitySet="Cite">
+                <ScalarProperty Name="IdCite" ColumnName="IdCite" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="DBModel.Order">
               <MappingFragment StoreEntitySet="Order">
@@ -253,6 +427,7 @@
                 <ScalarProperty Name="IdProduk" ColumnName="IdProduk" />
                 <ScalarProperty Name="NameProdukt" ColumnName="NameProdukt" />
                 <ScalarProperty Name="Remains" ColumnName="Remains" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -261,6 +436,9 @@
               <MappingFragment StoreEntitySet="Provader">
                 <ScalarProperty Name="IdProvader" ColumnName="IdProvader" />
                 <ScalarProperty Name="NameProvader" ColumnName="NameProvader" />
+                <ScalarProperty Name="IdCantri" ColumnName="IdCantri" />
+                <ScalarProperty Name="IdCite" ColumnName="IdCite" />
+                <ScalarProperty Name="IdStrit" ColumnName="IdStrit" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -269,6 +447,14 @@
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="IdRole" ColumnName="IdRole" />
                 <ScalarProperty Name="NameRole" ColumnName="NameRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Strit">
+            <EntityTypeMapping TypeName="DBModel.Strit">
+              <MappingFragment StoreEntitySet="Strit">
+                <ScalarProperty Name="IdStrit" ColumnName="IdStrit" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

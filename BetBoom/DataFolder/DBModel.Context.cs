@@ -25,18 +25,21 @@ namespace BetBoom.DataFolder
             if (Context == null)
                 Context = new DBEntities();
             return Context;
-                 
+
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Cantri> Cantri { get; set; }
+        public virtual DbSet<Cite> Cite { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<Produkts> Produkts { get; set; }
         public virtual DbSet<Provader> Provader { get; set; }
         public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<Strit> Strit { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
     }

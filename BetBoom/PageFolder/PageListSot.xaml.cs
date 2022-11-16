@@ -73,5 +73,10 @@ namespace BetBoom.PageFolder
         {
             NavigationService.Navigate(new PageAddSot());
         }
+
+        private void PostBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new PageProvader());
+        }
     }
 }
