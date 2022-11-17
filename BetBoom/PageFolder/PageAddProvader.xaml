@@ -23,18 +23,18 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
-                
+
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    
+
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <Button x:Name="BackBtn" Content="Назад"
-                        HorizontalAlignment="Left" Click="BacBtn_Click" Style="{DynamicResource BtnAPP}"/>
+                        HorizontalAlignment="Left" Click="BacBtn_Click" Style="{DynamicResource BtnAPP}" Margin="10,20,0,68" Grid.RowSpan="2"/>
 
                 <Label Content="Название:" Grid.Row="1" 
                        Style="{StaticResource LblNormal}"/>
@@ -58,7 +58,7 @@
                 <ComboBox x:Name="StritCb" Grid.Row="4" Grid.Column="1"
                           SelectedItem="{Binding Strit}" DisplayMemberPath="Name"
                           SelectedValuePath="IdStrit"/>
-              
+
                 <TextBox x:Name="ProduktTb" Grid.Row="5" Grid.Column="1" />
                 <TextBox x:Name="PriceTb" Grid.Row="6" Grid.Column="1" />
                 <Button x:Name="Save" Content="Сохранить" Grid.Column="0" Grid.Row="8"

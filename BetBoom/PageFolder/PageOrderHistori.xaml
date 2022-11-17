@@ -22,11 +22,13 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition/>
-                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+         
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
                 <Label Content="Название" Grid.Row="2" Grid.Column="1"
@@ -37,6 +39,8 @@
                        Style="{StaticResource LblNormal}"/>
                 <Label Content="Количество" Grid.Row="5" Grid.Column="1"
                        Style="{StaticResource LblNormal}"/>
+                <Label Content="Цена за шт." Grid.Row="6" Grid.Column="1"
+                       Style="{StaticResource LblNormal}"/>
                 <TextBox x:Name="NameTb" Grid.Row="2" Grid.Column="2"
                          Text="{Binding Produkts.NameProdukt}" IsEnabled="False"/>
                 <TextBox x:Name="DateTb" Grid.Row="3" Grid.Column="2"
@@ -45,6 +49,8 @@
                          Text="{Binding Provader.NameProvader}" IsEnabled="False"/>
                 <TextBox x:Name="KolTb" Grid.Row="5" Grid.Column="2"
                          Text="{Binding QuantityOrder}" IsEnabled="False"/>
+                <TextBox x:Name="PracTb" Grid.Row="6" Grid.Column="2" 
+                         Text="{Binding Produkts.Price}" IsEnabled="False"/>
                 <Button x:Name="BacBtn" Content="Назад" Grid.Row="1" Grid.Column="1"
                         Style="{DynamicResource BtnAPP}" Click="BacBtn_Click" Margin="10,30,10,10"/>
 

@@ -18,9 +18,9 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="90"/>
                     <RowDefinition/>
-
                     <RowDefinition/>
-
+                   
+                    <RowDefinition/>
 
                     <RowDefinition/>
                     <RowDefinition Height="90"/>
@@ -37,27 +37,32 @@
                 <Label Content="Поставщик:" Grid.Row="1" Grid.Column="0"
                        Style="{StaticResource  LblNormal}" />
                 <Label Content="Товар:" Grid.Row="1" 
-                       Style="{StaticResource  LblNormal}"  Margin="0,123,0,123" Grid.RowSpan="3"/>
+                       Style="{StaticResource  LblNormal}"   Grid.RowSpan="3"/>
                 <Label Content="Количество:" Grid.Row="3" 
                        Style="{StaticResource  LblNormal}" />
+                <Label Content="Цена:" Grid.Row="4"
+                       Style="{StaticResource LblNormal}"/>
 
 
                 <ComboBox x:Name="SuppliersCb" Grid.Column="1"
                           Grid.Row="1"  
                           SelectedItem="{Binding Provader}" 
                           DisplayMemberPath="NameProvader"
-                          SelectedValuePath="IdProvader" Margin="10,37,10,36" Grid.ColumnSpan="2"/>
+                          SelectedValuePath="IdProvader"  Grid.ColumnSpan="2"/>
                 <ComboBox x:Name="ProductCb" Grid.Column="1"
                           Grid.Row="2" 
                           SelectedItem="{Binding Produkts}" 
                           DisplayMemberPath="NameProdukt"
-                          SelectedValuePath="IdProdukt" Margin="10,37,10,37" 
+                          SelectedValuePath="IdProdukt"  
                           Grid.ColumnSpan="2"/>
                 <TextBox x:Name="quantityTb" Grid.Column="1"
-                          Grid.Row="3" Margin="10,36,10,37" Grid.ColumnSpan="2"/>
+                          Grid.Row="3" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="PriceTb" Grid.Row="4" Grid.Column="1" 
+                         Grid.ColumnSpan="2" 
+                       />
 
 
-                <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal">
+                <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal">
                     <Button x:Name="SaveBtn" Content="Сохранить"
                         HorizontalAlignment="Center" Click="SaveBtn_Click"
                         Style="{DynamicResource BtnAPP}" Width="225"
