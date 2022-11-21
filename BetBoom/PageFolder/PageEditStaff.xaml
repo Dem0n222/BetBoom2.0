@@ -13,7 +13,7 @@
             CornerRadius="20"
             Width="500"
             Height="550"
-            Background="#2F2F2F">
+            Background="#282828">
            
             <Grid>
                 <Grid.RowDefinitions>

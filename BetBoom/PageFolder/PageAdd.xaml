@@ -11,7 +11,7 @@
     <Grid>
         <Border
             CornerRadius="20"
-            Background = "#2F2F2F"
+            Background = "#282828"
              Width="500"
             Height="550">
             <Grid>
